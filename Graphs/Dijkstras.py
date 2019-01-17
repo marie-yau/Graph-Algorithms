@@ -1,4 +1,5 @@
 import networkx as nx
+import math
 
 """
 Computes DISTANCE AND PATH from startNode to the every other node in graph using Dijkstras Algorithm.
@@ -9,10 +10,9 @@ Return: visited - dictionary of all nodes and their distance from startNode
 
 Note: G must be
         - weighted (weights must be positive)
-        - weights of edges can't be large number (using 1000 instead of infinity)
       If G has more components
         - unreachable components won't appear in path dictionary
-        - values of unreachable components in visited dictionary is 1000 (my infinity)
+        - values of unreachable components in visited dictionary is infinity
 """
 def dijkstrasAlgorithm(G, startNode):
     # initialize dictionaries
@@ -25,7 +25,7 @@ def dijkstrasAlgorithm(G, startNode):
     for node in G.nodes():
         if node == startNode:
             continue
-        distance[node] = 1000
+        distance[node] = math.inf
 
     # select first node
     node = startNode
@@ -54,7 +54,7 @@ def dijkstrasAlgorithm(G, startNode):
         if bool(distance) == False:
             break
         # choose new node
-        smallestValue = 1000
+        smallestValue = math.inf
         for n in distance:
             if distance[n] <= smallestValue:
                 smallestValue = distance[n]
@@ -68,3 +68,10 @@ def dijkstrasAlgorithm(G, startNode):
     print(path)
 
     return (visited, path)
+
+"""
+Dijkstra's algorithm works similarly as Prim's algorithms for minimum spanning tree.
+If we want to use Dijkstra's algorithm to find shortest path from A to B, we can stop when B is in visited.
+If we want to use Dijkstra's algorithm to find minimum spanning tree, we have to let it find shortest path to all nodes.
+The only difference is that in Prim's, we can choose our source node - when using Dijkstra's, it is given.
+"""
