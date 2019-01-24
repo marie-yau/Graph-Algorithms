@@ -6,8 +6,12 @@ Computes DISTANCE AND PATH from startNode to the every other node in graph using
 Arguments: G - reference to networkx graph, startNode - node from which search starts
 Returns: distance - dictionary of all nodes and their distance from startNode
         path - dictionary of visited nodes and path to the from startNode
+        
+Time complexity: depends on the implementation (data structure used)
+                        - Adjacency Matrix O(v^2)
+                        - Adjacency List O(v + e)
 
-NOTE: G 
+Note: G 
         - can't have loops
         - is unweighted graph (when weighted graph is passed, it will process it as unweighted)
 """
