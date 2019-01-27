@@ -11,19 +11,17 @@ def displayAllPaths(G, startNode, pathDic):
     treeNodes = []
     for k in pathDic:
         treeNodes.append(pathDic[k])
-
-    # get tree edges
-    treeEdges = []
-    for p in treeNodes:
-        for n in range(0, len(p) - 1):
-            treeEdges.append((p[n], p[n + 1]))
-
-    # get list of nodes from treeNodes
     listNode = []
     for l in treeNodes:
         for n in l:
             if n not in listNode:
                 listNode.append(n)
+                
+    # get tree edges
+    treeEdges = []
+    for p in treeNodes:
+        for n in range(0, len(p) - 1):
+            treeEdges.append((p[n], p[n + 1]))
 
     # draw the whole graph
     pos = nx.spring_layout(G)
@@ -31,7 +29,7 @@ def displayAllPaths(G, startNode, pathDic):
     nx.draw_networkx_edge_labels(G, pos, edge_labels)
     nx.draw(G, pos, with_labels = True, node_color = "gray")
 
-    # draw the minimum spanning tree (edges and nodes) in blue
+    # draw the tree (edges and nodes) in blue
     nx.draw_networkx_nodes(G, pos, nodelist = listNode, node_color = "blue")
     nx.draw_networkx_edges(G, pos, edgelist = treeEdges, edge_color = "blue")
 
