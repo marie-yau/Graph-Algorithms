@@ -5,6 +5,8 @@ Computes DISTANCE AND PATH from startNode to the every other node in graph using
 Arguments: G - reference to networkx graph, startNode - node from which search starts
 Return: visited - dictionary of all nodes and their distance from startNode 
         path - dictionary of visited nodes and path to the from startNode
+        
+Time complexity: O(v * e)
 
 Note: G 
         - can have negative edges' weights
